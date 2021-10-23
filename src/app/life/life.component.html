@@ -33,7 +33,7 @@
                 </div>
                 </div>
                 <div class="col">
-                    <label>Middle Name<span style="color: red;"></span></label>
+                    <label>Middle Name</label>
                     <input formControlName="middlename" class="form-control"  aria-label="Last name" placeholder="Enter Middle Name" required required [(ngModel)] = "user.middleNmme"/>
                     <div *ngIf="middlename.invalid && (middlename.touched || middlename.dirty)">
                         <span class="error" *ngIf="middlename.errors?.pattern"> *Enter Only Characters</span>
@@ -171,12 +171,12 @@
                     <label for ="selectPlane">Describe time in year for your plan ?<span style="color: red;">*</span></label>
                     <br> 
                     <select style="height: 45px; width: 490px;"> 
-                         
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                         <option value="3">3</option>
-                        <option value="4">4</option> 
-                        <option value="5">5</option>
+                        <option>Choose your year plan</option>
+                        <option value="1">1 year</option>
+                        <option value="2">2 years</option>
+                         <option value="3">3 years</option>
+                        <option value="4">4 years</option> 
+                        <option value="5">5 years</option>
                     </select>
                       
                 </div>
@@ -201,8 +201,10 @@
                     <label>Gender<span style="color: red;">*</span></label>
                 
                     <select name="cars" id="cars" style="height: 45px; width: 490px;">
+                        <option value="Select" [(ngModel)] = "user.gender">Select Gender</option>
                         <option value="Male" [(ngModel)] = "user.gender">Male</option>
                         <option value="Female" [(ngModel)] = "user.gender">Female</option>
+                        <option value="Others" [(ngModel)] = "user.gender">Others</option>
                          
                       </select>
                  </div>
@@ -211,6 +213,7 @@
                 <div class="col">
                     <label>Are you planning on cancelling any existing life insurance?</label>
                        <select name="cars" id="cars" style="height: 45px; width: 490px;">
+                        <option value="Select">Select Option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                       </select>
@@ -224,6 +227,7 @@
                 <div class="col ">
                     <label>Do you have group life insurance through work?</label>
                       <select name="cars" id="cars" style="height: 45px; width: 490px;">
+                        <option value="Select">Select Option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
@@ -232,6 +236,7 @@
                     <label>Do you consume Tobacco Or Alcohol Or do Smoking?<span style="color: red;">*</span></label>
                  
                     <select name="cars" id="cars" style="height: 45px; width: 490px;">
+                        <option value="Select">Select Option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                       </select>
@@ -251,6 +256,7 @@
                 <div class="col">
                 <label>Are You HIV Positive?</label>
                    <select name="cars" id="cars" style="height: 45px; width: 490px;">
+                    <option value="Select">Select Option</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </select>
@@ -258,6 +264,7 @@
                 <div class="col">
                     <label>Do you Have any Lung Disease Or Heart Desease?</label>
                     <select name="cars" id="cars" style="height: 45px; width: 490px;">
+                        <option value="Select">Select Option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                       </select>
@@ -269,9 +276,8 @@
             <div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Do you have any other health Issue please Describe:</label>
-                    <input formControlName="healthIssue" class="form-control" aria-label="zip" placeholder="Tell about your health issue" required required [(ngModel)] = "user.healthIssue" maxlength="50" style="height: 100px;"/>
+                    <input formControlName="healthIssue" class="form-control" aria-label="zip" placeholder="Tell about your health issue" [(ngModel)] = "user.healthIssue" maxlength="50" style="height: 100px;"/>
                     <div *ngIf="healthIssue.invalid && (healthIssue.touched || healthIssue.dirty)">
-                        <span class="error" *ngIf="healthIssue.errors?.required"> *Occupation is required</span>
                         <span class="error" *ngIf="healthIssue.errors?.maxlength">*Length should be less than 50</span>
                     </div>      
                 </div>
@@ -280,9 +286,8 @@
             <div class="row g-3">
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Please add any additional comments or questions:</label>
-                    <input formControlName="additionalComments" class="form-control" aria-label="zip" placeholder=" Add your comments" required required [(ngModel)] = "user.additionalComments" maxlength="50" style="height: 100px;"/>
+                    <input formControlName="additionalComments" class="form-control" aria-label="zip" placeholder=" Add your comments" [(ngModel)] = "user.additionalComments" maxlength="50" style="height: 100px;"/>
                     <div *ngIf="additionalComments.invalid && (additionalComments.touched || additionalComments.dirty)">
-                        <span class="error" *ngIf="additionalComments.errors?.required"> *comments is required</span>
                         <span class="error" *ngIf="additionalComments.errors?.maxlength">*Length should be less than 50</span>
                     </div>     
                 </div>
