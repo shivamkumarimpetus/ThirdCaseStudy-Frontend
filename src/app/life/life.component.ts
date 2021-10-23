@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LifeComponent implements OnInit {
   
+  private formSubmitAttempt: boolean;
 
   selectedDay:string ='';
 
@@ -66,6 +67,20 @@ export class LifeComponent implements OnInit {
     });
   }
 
+  isFieldValid(field: string) {
+    return (
+      (!this.LifeForm.get(field).valid && this.LifeForm.get(field).touched) ||
+      (this.LifeForm.get(field).untouched && this.formSubmitAttempt)
+    );
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
+  }
+
   get firstname() {return this.LifeForm.get('firstname');}
   get lastname() {return this.LifeForm.get('lastname');}
   get middlename() {return this.LifeForm.get('middlename');}
@@ -93,6 +108,12 @@ export class LifeComponent implements OnInit {
   user = new LifeRegistration();
   applyLife(){
 
+    if (this.LifeForm.valid) {
+      console.log('form submitted');
+    } else {
+      this.validateAllFormFields(this.LifeForm);
+    }
+
     this._service.applyUserForLife(this.user).subscribe(
       data=>{
         console.log("response received");
@@ -107,5 +128,18 @@ export class LifeComponent implements OnInit {
       
     );
 
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      console.log(field);
+      const control = formGroup.get(field);
+
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
   }
 }
